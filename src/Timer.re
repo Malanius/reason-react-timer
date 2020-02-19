@@ -23,5 +23,9 @@ let make = () => {
       {isTicking: false, seconds: 30},
     );
 
-  <div> {ReasonReact.string("Timer will go here...")} </div>;
+  <div>
+    {ReasonReact.string(
+       "There are " ++ string_of_int(state.seconds) ++ " on the clock",
+     )}
+  </div>;
 };
