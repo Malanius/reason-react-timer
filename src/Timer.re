@@ -9,6 +9,21 @@ type action =
   | Reset
   | Tick;
 
+let padNumber = numString =>
+  if (numString->int_of_string < 10) {
+    "0" ++ numString;
+  } else {
+    numString;
+  };
+
+let formatTime = seconds => {
+  let mins = seconds / 60;
+  let minString = mins->string_of_int->padNumber;
+  let seconds = seconds mod 60;
+  let secondsString = seconds->string_of_int->padNumber;
+  minString ++ ":" ++ secondsString;
+};
+
 [@react.component]
 let make = () => {
   let (state, dispatch) =
@@ -32,9 +47,7 @@ let make = () => {
 
   <div style=AppStyles.container>
     <p style=AppStyles.paragraph>
-      {ReasonReact.string(
-         "There are " ++ string_of_int(state.seconds) ++ " on the clock",
-       )}
+      {state.seconds->formatTime->ReasonReact.string}
     </p>
     {state.isTicking
        ? <Button label="STOP" onClick={_event => dispatch(Stop)} />
