@@ -23,6 +23,11 @@ let make = () => {
       {isTicking: false, seconds: 30},
     );
 
+  React.useEffect0(() => {
+    let timerId = Js.Global.setInterval(() => dispatch(Tick), 1_000);
+    Some(() => Js.Global.clearInterval(timerId));
+  });
+
   <div>
     {ReasonReact.string(
        "There are " ++ string_of_int(state.seconds) ++ " on the clock",
