@@ -34,5 +34,11 @@ let make = () => {
     {ReasonReact.string(
        "There are " ++ string_of_int(state.seconds) ++ " on the clock",
      )}
+    {state.isTicking
+       ? <Button label="STOP" onClick={_event => dispatch(Stop)} />
+       : <>
+           <Button label="START" onClick={_event => dispatch(Start)} />
+           <Button label="RESET" onClick={_event => dispatch(Reset)} />
+         </>}
   </div>;
 };
