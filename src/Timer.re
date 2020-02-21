@@ -30,10 +30,12 @@ let make = () => {
     Some(() => Js.Global.clearInterval(timerId));
   });
 
-  <div>
-    {ReasonReact.string(
-       "There are " ++ string_of_int(state.seconds) ++ " on the clock",
-     )}
+  <div style=AppStyles.container>
+    <p style=AppStyles.paragraph>
+      {ReasonReact.string(
+         "There are " ++ string_of_int(state.seconds) ++ " on the clock",
+       )}
+    </p>
     {state.isTicking
        ? <Button label="STOP" onClick={_event => dispatch(Stop)} />
        : <>
